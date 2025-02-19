@@ -1,0 +1,7 @@
+.env
+*.terraform*
+*.tfstate
+*.tfstate.*
+*.tfvars
+*.p8
+*.csv
