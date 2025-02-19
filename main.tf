@@ -8,6 +8,9 @@ terraform {
 }
 
 provider "snowflake" {
+    preview_features_enabled = [
+        "snowflake_user_password_policy_attachment_resource"
+    ]
     account_name        = var.snowflake_account_name
     organization_name   = var.snowflake_organization
     user                = var.snowflake_user
@@ -47,7 +50,13 @@ resource "snowflake_grant_account_role" "workshop_users_role" {
   role_name  = snowflake_account_role.workshop_role.name
   user_name  = each.value.name
 }
- 
+
+resource "snowflake_user_authentication_policy_attachment" "auth_policy" {
+  for_each                     = snowflake_user.workshop_users
+  authentication_policy_name   = "CLIENT_AUTH_POLICY"
+  user_name                    = each.value.name
+}
+
 output "created_users" {
   value = keys(snowflake_user.workshop_users)
 }
