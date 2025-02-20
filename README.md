@@ -21,10 +21,6 @@ This repository provides Terraform scripts to automate the creation of Snowflake
 ├── README.md               # Documentation
 ```
 
-## Repository
-This repository is available at:
-[https://github.com/pandata-group/tf-snowflake-workshop](https://github.com/pandata-group/tf-snowflake-workshop)
-
 ## Prerequisites
 Ensure you have the following installed:
 - [Terraform](https://developer.hashicorp.com/terraform/downloads)
