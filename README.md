@@ -1,4 +1,4 @@
-# Snowflake User Management with Terraform
+# Snowflake Management for Workshops with Terraform
 
 This repository provides Terraform scripts to automate the creation of Snowflake users, warehouses, and infrastructure for workshops. The setup leverages the Snowflake Terraform provider to ensure efficient provisioning and management.
 
