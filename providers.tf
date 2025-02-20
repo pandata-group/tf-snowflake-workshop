@@ -3,7 +3,7 @@ provider "snowflake" {
     organization_name   = var.snowflake_organization
     user                = "SVC_TERRAFORM"
     role                = "SYSADMIN"
-    private_key         = replace(var.snowflake_private_key, "\\n", "\n")
+    private_key         = ar.snowflake_private_key
     authenticator       = var.snowflake_authenticator
 
     preview_features_enabled = [
@@ -17,7 +17,7 @@ provider "snowflake" {
     organization_name   = var.snowflake_organization
     user                = "SVC_TERRAFORM"
     role                = "SECURITYADMIN"
-    private_key         = replace(var.snowflake_private_key, "\\n", "\n")
+    private_key         = var.snowflake_private_key
     authenticator       = var.snowflake_authenticator
 
     preview_features_enabled = [
