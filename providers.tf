@@ -3,7 +3,7 @@ provider "snowflake" {
     organization_name   = var.snowflake_organization
     user                = "SVC_TERRAFORM"
     role                = "SYSADMIN"
-    private_key         = ar.snowflake_private_key
+    private_key         = var.snowflake_private_key
     authenticator       = var.snowflake_authenticator
 
     preview_features_enabled = [
