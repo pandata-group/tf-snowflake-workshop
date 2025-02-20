@@ -26,7 +26,7 @@ provider "snowflake" {
     organization_name   = var.snowflake_organization
     user                = "SVC_TERRAFORM"
     role                = "SECURITYADMIN"
-    private_key         = file(var.snowflake_private_key)
+    private_key         = var.snowflake_private_key # use file(var.snowflake_private_key) if running local
     authenticator       = var.snowflake_authenticator
 
     preview_features_enabled = [
