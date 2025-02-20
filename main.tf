@@ -75,6 +75,10 @@ resource "snowflake_grant_account_role" "workshop_users_role" {
   for_each = local.users
   role_name = snowflake_account_role.workshop_role.name
   user_name = each.value.transformed_name
+
+  depends_on = [
+    snowflake_user.workshop_users
+  ]
 }
 
 output "created_users" {
