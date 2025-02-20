@@ -10,6 +10,7 @@ variable "snowflake_organization" {
 variable "snowflake_private_key" {
   description = "Path to the private key for authentication"
   type        = string
+  sensitive   = true
 }
 
 variable "snowflake_authenticator" {
