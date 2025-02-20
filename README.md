@@ -71,3 +71,7 @@ SELECT * FROM SNOWFLAKE.ACCOUNT_USAGE.WAREHOUSES;
 ```sh
 terraform destroy -auto-approve
 ```
+
+## Optional Shell Bash Script
+Included in this repo is a tf_apply.sh shell script depicting the potential to automate local terraform commands.
+It showcases a terraform apply with an auto approve as well as a 'terraform state rm' as an option to protect listed resources from being deleted in the event a 'terraform destroy' command is run.
