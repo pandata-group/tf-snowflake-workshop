@@ -12,13 +12,14 @@ This repository provides Terraform scripts to automate the creation of Snowflake
 ## Project Structure
 ```
 .
-├── main.tf                 # Terraform configuration for Snowflake
-├── variables.tf            # Terraform variables
-├── terraform.tfvars        # User-defined Terraform variables
-├── users.csv               # List of users to be created
-├── terraform.tfstate       # Terraform state file (generated after apply)
-├── terraform.tfstate.backup # Backup of the Terraform state file
-├── README.md               # Documentation
+├── main.tf                     # Terraform configuration for Snowflake
+├── variables.tf                # Terraform variables
+├── terraform.tfvars            # User-defined Terraform variables
+├── terraform_example.tfvars    # Example of user-defined variables
+├── users.csv                   # List of users to be created
+├── terraform.tfstate           # Terraform state file (generated after apply)
+├── terraform.tfstate.backup    # Backup of the Terraform state file
+├── README.md                   # Documentation
 ```
 
 ## Prerequisites
