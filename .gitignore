@@ -4,4 +4,3 @@
 *.tfstate.*
 *.tfvars
 *.p8
-*.csv

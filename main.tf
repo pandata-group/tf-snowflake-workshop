@@ -8,35 +8,61 @@ terraform {
 }
 
 provider "snowflake" {
-    preview_features_enabled = [
-        "snowflake_user_password_policy_attachment_resource"
-    ]
     account_name        = var.snowflake_account_name
     organization_name   = var.snowflake_organization
-    user                = var.snowflake_user
-    role                = var.snowflake_role
+    user                = "SVC_TERRAFORM"
+    role                = "SYSADMIN"
     private_key         = file(var.snowflake_private_key)
     authenticator       = var.snowflake_authenticator
+
+    preview_features_enabled = [
+        "snowflake_user_authentication_policy_attachment_resource"
+    ]
+}
+
+provider "snowflake" {
+    alias = "securityadmin"
+    account_name        = var.snowflake_account_name
+    organization_name   = var.snowflake_organization
+    user                = "SVC_TERRAFORM"
+    role                = "SECURITYADMIN"
+    private_key         = file(var.snowflake_private_key)
+    authenticator       = var.snowflake_authenticator
+
+    preview_features_enabled = [
+        "snowflake_user_authentication_policy_attachment_resource"
+    ]
 }
 
 locals {
-  users = csvdecode(file(var.csv_file))
+  users = {
+    for user in csvdecode(file(var.csv_file)) :
+    user.email => {
+      email            = user.email
+      password         = lower("${replace(user.name, " ", "")}${substr(user.email, 0, 3)}!2025")
+      name             = user.name
+      transformed_name = upper("${substr(split(" ", user.name)[0], 0, 1)}${split(" ", user.name)[1]}") # Pass = removes space from name, add first 3 letters from email, appens !2025
+    }
+  }
 }
 
 resource "snowflake_account_role" "workshop_role" {
+  provider = snowflake.securityadmin
   name = "WORKSHOP_USER"
 }
 
 resource "snowflake_warehouse" "workshop_wh" {
-  name           = "WORKSHOP_WH"
+  name           = "TF_WORKSHOP_WH"
   warehouse_size = "XSMALL"
   auto_suspend   = 60
   auto_resume    = true
 }
 
 resource "snowflake_user" "workshop_users" {
-  for_each       = { for user in local.users : user.email => user }
-  name          = each.value.email
+  provider = snowflake.securityadmin
+  for_each = local.users
+
+  name          = each.value.transformed_name
   login_name    = each.value.email
   display_name  = each.value.name
   password      = each.value.password
@@ -46,15 +72,9 @@ resource "snowflake_user" "workshop_users" {
 }
 
 resource "snowflake_grant_account_role" "workshop_users_role" {
-  for_each   = snowflake_user.workshop_users
-  role_name  = snowflake_account_role.workshop_role.name
-  user_name  = each.value.name
-}
-
-resource "snowflake_user_authentication_policy_attachment" "auth_policy" {
-  for_each                     = snowflake_user.workshop_users
-  authentication_policy_name   = "CLIENT_AUTH_POLICY"
-  user_name                    = each.value.name
+  for_each = local.users
+  role_name = snowflake_account_role.workshop_role.name
+  user_name = each.value.transformed_name
 }
 
 output "created_users" {
