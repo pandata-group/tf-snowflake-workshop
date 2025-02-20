@@ -1,4 +1,3 @@
-#SYSADMIN
 provider "snowflake" {
     account_name        = var.snowflake_account_name
     organization_name   = var.snowflake_organization
@@ -11,7 +10,7 @@ provider "snowflake" {
         "snowflake_user_authentication_policy_attachment_resource"
     ]
 }
-# SECURITYADMIN
+
 provider "snowflake" {
     alias = "securityadmin"
     account_name        = var.snowflake_account_name
