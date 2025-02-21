@@ -11,6 +11,7 @@ provider "snowflake" {
     ]
 }
 
+# SECURITYADMIN
 provider "snowflake" {
     alias = "securityadmin"
     account_name        = var.snowflake_account_name
