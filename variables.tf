@@ -4,7 +4,7 @@ variable "snowflake_account_name" {
 }
 
 variable "snowflake_organization" {
-    description = "Your Snowflake organization name"
+  description = "Your Snowflake organization name"
 }
 
 variable "snowflake_private_key" {
@@ -14,13 +14,13 @@ variable "snowflake_private_key" {
 }
 
 variable "snowflake_authenticator" {
-    description = "Authenticator type"
-    type        = string
+  description = "Authenticator type"
+  type        = string
 }
 
 variable "csv_file" {
-    description = "CSV file of users"
-    type = string
+  description = "CSV file of users"
+  type        = string
 }
 
 
@@ -28,10 +28,10 @@ variable "csv_file" {
 
 variable "aws_access_key" {
   description = "aws access key"
-  type = string
+  type        = string
 }
 
 variable "aws_secret_key" {
   description = "aws secret key"
-  type = string
+  type        = string
 }
