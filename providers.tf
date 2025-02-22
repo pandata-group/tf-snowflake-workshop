@@ -10,6 +10,13 @@ terraform {
       version = "~> 5.0"
     }
   }
+
+  cloud {
+    organization = "pandatagroup"           # Replace with your Terraform Cloud org
+    workspaces {
+      name = "tf-snowflake-workshop"        # Replace with your Terraform Cloud workspace name
+    }
+  }
 }
 
 # Snowflake

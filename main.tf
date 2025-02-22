@@ -38,6 +38,13 @@ resource "snowflake_grant_account_role" "workshop_users_role" {
 }
 
 # AWS
+
+# create workshop bucket
 resource "aws_s3_bucket" "pandata-prod-workshop-us-east-1" {
-  bucket = "pandata-prod-workshop-us-east-1"
+  bucket = "pandata-workshop-us-east-1"
+}
+
+data "aws_s3_object" "csv_file" {
+  bucket = "pandata-secure-us-east-1"
+  key    = "workshops/users.csv"
 }
