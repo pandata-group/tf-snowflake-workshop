@@ -29,9 +29,11 @@ variable "csv_file" {
 variable "aws_access_key" {
   description = "aws access key"
   type        = string
+  sensitive   = true
 }
 
 variable "aws_secret_key" {
   description = "aws secret key"
   type        = string
+  sensitive   = true
 }
