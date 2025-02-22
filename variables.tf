@@ -18,11 +18,6 @@ variable "snowflake_authenticator" {
   type        = string
 }
 
-variable "csv_file" {
-  description = "CSV file of users"
-  type        = string
-}
-
 
 # AWS
 
