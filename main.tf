@@ -36,8 +36,3 @@ resource "snowflake_grant_account_role" "workshop_users_role" {
     snowflake_user.workshop_users
   ]
 }
-
-# AWS
-resource "aws_s3_bucket" "pandata-prod-workshop-us-east-1" {
-  bucket = "pandata-prod-workshop-us-east-1"
-}
