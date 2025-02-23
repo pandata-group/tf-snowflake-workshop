@@ -3,7 +3,7 @@
 This repository provides Terraform scripts to automate the creation of Snowflake users, warehouses, and infrastructure for workshops. The setup leverages the Snowflake Terraform provider to ensure efficient provisioning and management.
 
 ## Features
-- Automates Snowflake user creation from a CSV file
+- Automates Snowflake user creation from a CSV file in S3
 - Creates and manages Snowflake warehouses and roles
 - Uses Terraform for infrastructure-as-code (IaC)
 - Secure authentication via private key
@@ -16,7 +16,6 @@ This repository provides Terraform scripts to automate the creation of Snowflake
 ├── variables.tf                # Terraform variables
 ├── terraform.tfvars            # User-defined Terraform variables
 ├── terraform_example.tfvars    # Example of user-defined variables
-├── users.csv                   # List of users to be created
 ├── terraform.tfstate           # Terraform state file (generated after apply)
 ├── terraform.tfstate.backup    # Backup of the Terraform state file
 ├── README.md                   # Documentation
