@@ -12,9 +12,9 @@ terraform {
   }
 
   cloud {
-    organization = "pandatagroup"           # Replace with your Terraform Cloud org
+    organization = "pandatagroup"
     workspaces {
-      name = "tf-snowflake-workshop"        # Replace with your Terraform Cloud workspace name
+      name = "tf-snowflake-workshop"
     }
   }
 }
